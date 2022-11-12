@@ -74,6 +74,15 @@ body {
   background: linear-gradient(to left top, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
+.disabled p {
+  text-decoration: line-through;
+  opacity: 0.3;
+}
+
+.disabled .icon-bg {
+  background: linear-gradient(to left top, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
 /*** Header style ***/
 header {
   color: hsl(0, 0%, 98%);
