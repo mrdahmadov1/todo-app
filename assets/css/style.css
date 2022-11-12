@@ -25,7 +25,7 @@ button {
 html,
 body {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 body {
@@ -39,7 +39,7 @@ body {
 .container {
   width: 100%;
   height: 100%;
-  padding: 48px 24px 0;
+  padding: 48px 24px;
 }
 
 .bg-mobile-light {
@@ -164,10 +164,7 @@ main {
 
 /*** Footer style ***/
 .cont-footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 48px;
+  /* padding-bottom: 48px; */
 }
 
 .cont-footer p {
