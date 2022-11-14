@@ -70,10 +70,6 @@ body {
   cursor: pointer;
 }
 
-.icon-bg:hover {
-  background: linear-gradient(to left top, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-}
-
 .disabled p {
   text-decoration: line-through;
   opacity: 0.3;
@@ -169,6 +165,10 @@ main {
   font-weight: 700;
   color: hsl(236, 9%, 61%);
   padding: 0 8px;
+}
+
+.main-footer button.activated {
+  color: hsl(220, 98%, 61%);
 }
 
 /*** Footer style ***/
