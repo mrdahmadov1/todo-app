@@ -41,6 +41,57 @@ function eventListeners() {
 }
 
 /**
+ * Drag and Drop
+ */
+
+let dragSrcEl;
+
+function dragStart(e) {
+  this.style.opacity = "0.4";
+  dragSrcEl = this;
+  e.dataTransfer.effectAllowed = "move";
+  e.dataTransfer.setData("text/html", this.innerHTML);
+}
+
+function dragLeave(e) {
+  e.stopPropagation();
+}
+
+function dragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = "move";
+  return false;
+}
+
+function dragDrop(e) {
+  if (dragSrcEl != this) {
+    dragSrcEl.innerHTML = this.innerHTML;
+    this.innerHTML = e.dataTransfer.getData("text/html");
+  }
+  this.querySelector(".cross").addEventListener("click", removeTodo);
+  this.querySelector(".bg-check").addEventListener("click", disableTodo);
+  dragSrcEl.querySelector(".cross").addEventListener("click", removeTodo);
+  dragSrcEl.querySelector(".bg-check").addEventListener("click", disableTodo);
+  return false;
+}
+
+function dragEnd(e) {
+  this.style.opacity = "1";
+}
+
+function addEventsDragAndDrop(el) {
+  el.addEventListener("dragstart", dragStart, false);
+  el.addEventListener("dragover", dragOver, false);
+  el.addEventListener("dragleave", dragLeave, false);
+  el.addEventListener("drop", dragDrop, false);
+  el.addEventListener("dragend", dragEnd, false);
+}
+
+[].forEach.call(todoItems, function (item) {
+  addEventsDragAndDrop(item);
+});
+
+/**
  * Loading
  */
 function loadAllTodos() {
@@ -157,12 +208,16 @@ function addTodoToUI(newTodo) {
   crossImg.addEventListener("click", removeTodo);
 
   const todo = document.createElement("div");
-  todo.className = `col col-12 box todo d-flex justify-content-between align-items-center`;
+  const attr = document.createAttribute("draggable");
+  todo.className = `col col-12 box todo draggable d-flex justify-content-between align-items-center`;
+  attr.value = "true";
+  todo.setAttributeNode(attr);
 
   todo.append(checkBg, todoText, crossImg);
   todos.prepend(todo);
   increaseTodo();
   input.value = "";
+  addEventsDragAndDrop(todo);
 }
 
 function addTodosToLocalstorage(newTodo) {

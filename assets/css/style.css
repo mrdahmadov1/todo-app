@@ -135,6 +135,7 @@ main {
 /* Main Todos */
 .todo {
   border-bottom: 1px solid hsl(236, 9%, 61%);
+  cursor: move;
 }
 
 .cross {
